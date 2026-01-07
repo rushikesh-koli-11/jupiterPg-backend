@@ -40,7 +40,8 @@ public class JwtFilter extends OncePerRequestFilter {
         // ✅ Public endpoints (NO JWT REQUIRED)
         if (path.startsWith("/auth/")
                 || (path.startsWith("/pgs") && "GET".equalsIgnoreCase(method))
-                || (path.startsWith("/rooms") && "GET".equalsIgnoreCase(method))) {
+                || (path.startsWith("/rooms") && "GET".equalsIgnoreCase(method))
+                || (path.startsWith("/beds") && "GET".equalsIgnoreCase(method))) {
             filterChain.doFilter(request, response);
             return;
         }
