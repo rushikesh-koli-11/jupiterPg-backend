@@ -1,0 +1,27 @@
+server:
+  port: 8080
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+spring:
+  application:
+    name: jupiter-pg
+  data:
+    mongodb:
+      uri: mongodb+srv://rushikeshkoli87400_db_user:bAlWXXFeG3zZJs1I@cluster0.o03z07q.mongodb.net/jupiterpg?appName=Cluster0
+
+jwt:
+  secret: ZHVtbXlqand0c2VjcmV0a2V5MTIzNDU2Nzg5MDEyMzQ1Ng==
+  expiration: 86400000  # 24 hours in milliseconds
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+cloudinary:
+  cloud-name: dlj9xffro
+  api-key: 226269671598645
+  api-secret: mU-kBicgp8Xc5bqMdT_rSwajM3I
