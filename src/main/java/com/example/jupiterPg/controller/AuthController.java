@@ -13,14 +13,14 @@ public class AuthController {
 
     private final AuthService authService;
 
-    // ✅ ADMIN SIGN UP
+
     @PostMapping("/register")
     public String register(@RequestBody Admin admin) {
         authService.register(admin);
         return "Admin registered successfully";
     }
 
-    // ✅ ADMIN LOGIN
+
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest request) {
         return authService.login(request.getEmail(), request.getPassword());

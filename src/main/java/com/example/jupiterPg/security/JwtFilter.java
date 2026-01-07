@@ -28,7 +28,6 @@ public class JwtFilter extends OncePerRequestFilter {
             FilterChain filterChain)
             throws ServletException, IOException {
 
-        // ✅ Always allow CORS preflight
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             filterChain.doFilter(request, response);
             return;
@@ -37,7 +36,6 @@ public class JwtFilter extends OncePerRequestFilter {
         String path = request.getServletPath();
         String method = request.getMethod();
 
-        // ✅ Public endpoints (NO JWT REQUIRED)
         if (path.startsWith("/auth/")
                 || (path.startsWith("/pgs") && "GET".equalsIgnoreCase(method))
                 || (path.startsWith("/rooms") && "GET".equalsIgnoreCase(method))
@@ -46,7 +44,6 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
-        // 🔒 Protected endpoints
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {

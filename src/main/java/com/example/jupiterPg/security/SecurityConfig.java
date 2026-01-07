@@ -22,7 +22,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                // ✅ THIS IS THE FIX
+
                 .cors(Customizer.withDefaults())
 
                 .csrf(csrf -> csrf.disable())

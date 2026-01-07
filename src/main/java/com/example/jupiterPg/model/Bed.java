@@ -13,9 +13,9 @@ public class Bed {
 
     private String roomId;
 
-    private String sharingType; // SINGLE / DOUBLE / TRIPLE
+    private String sharingType;
 
     private String bedNumber;
 
-    private String status; // AVAILABLE / OCCUPIED
+    private String status;
 }

@@ -84,7 +84,6 @@ public class ResidentService {
 
 
 
-    /* ================= DELETE ================= */
 
     public void delete(String id) {
 
@@ -103,7 +102,6 @@ public class ResidentService {
         residentRepository.deleteById(id);
     }
 
-    /* ================= CHECKOUT ================= */
 
     public Resident checkout(String residentId, LocalDate checkoutDate) {
 

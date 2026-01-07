@@ -15,7 +15,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
-    // ✅ REGISTER
+
     public void register(Admin admin) {
 
         if (adminRepository.findByEmail(admin.getEmail()).isPresent()) {
@@ -26,7 +26,7 @@ public class AuthService {
         adminRepository.save(admin);
     }
 
-    // ✅ LOGIN
+
     public String login(String email, String rawPassword) {
 
         Admin admin = adminRepository.findByEmail(email)

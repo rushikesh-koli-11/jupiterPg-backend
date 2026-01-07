@@ -11,7 +11,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /* ===== BUSINESS VALIDATION ERRORS ===== */
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<?> handleRuntime(RuntimeException ex) {
 
@@ -23,7 +22,6 @@ public class GlobalExceptionHandler {
                 ));
     }
 
-    /* ===== FALLBACK (OPTIONAL) ===== */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> handleException(Exception ex) {
 

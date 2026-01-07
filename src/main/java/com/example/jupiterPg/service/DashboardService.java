@@ -48,7 +48,6 @@ public class DashboardService {
         );
     }
 
-    /* ================= REVENUE LOGIC ================= */
 
     private Revenue calculateRevenue() {
 
@@ -62,7 +61,6 @@ public class DashboardService {
 
         for (Resident r : residents) {
 
-            // ✅ SAFE NULL CHECK
             if (r.getRent() == null || r.getCheckInDate() == null) {
                 continue;
             }
@@ -82,7 +80,6 @@ public class DashboardService {
     }
 
 
-    /* ================= HELPER ================= */
 
     private static class Revenue {
         double monthly;

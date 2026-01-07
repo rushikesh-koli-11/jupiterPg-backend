@@ -14,13 +14,13 @@ public class EnquiryController {
 
     private final EnquiryRepository enquiryRepository;
 
-    // User submits enquiry
+
     @PostMapping
     public Enquiry submitEnquiry(@RequestBody Enquiry enquiry) {
         return enquiryRepository.save(enquiry);
     }
 
-    // Admin views all enquiries
+
     @GetMapping
     public List<Enquiry> getAll() {
         return enquiryRepository.findAllByOrderByCreatedAtDesc();

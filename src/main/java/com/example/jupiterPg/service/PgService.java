@@ -18,34 +18,29 @@ public class PgService {
     private final PgRepository pgRepository;
     private final Cloudinary cloudinary;
 
-    /* ================= CREATE ================= */
 
     public Pg create(Pg pg, MultipartFile[] images) {
         uploadImages(pg, images);
         return pgRepository.save(pg);
     }
 
-    /* ================= UPDATE ================= */
 
     public Pg update(String id, Pg incomingPg, MultipartFile[] images) {
 
         Pg existing = pgRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("PG not found"));
 
-        // basic fields
+
         existing.setName(incomingPg.getName());
         existing.setLocation(incomingPg.getLocation());
         existing.setTotalFloors(incomingPg.getTotalFloors());
 
-        // 🔥 VERY IMPORTANT: overwrite images from frontend
         List<String> finalImages = new ArrayList<>();
 
-        // images user decided to KEEP
         if (incomingPg.getImages() != null) {
             finalImages.addAll(incomingPg.getImages());
         }
 
-        // newly uploaded images
         if (images != null && images.length > 0) {
             for (MultipartFile file : images) {
                 try {
@@ -66,19 +61,16 @@ public class PgService {
     }
 
 
-    /* ================= READ ================= */
 
     public List<Pg> getAll() {
         return pgRepository.findAll();
     }
 
-    /* ================= DELETE ================= */
 
     public void delete(String id) {
         pgRepository.deleteById(id);
     }
 
-    /* ================= HELPER ================= */
 
     private void uploadImages(Pg pg, MultipartFile[] images) {
         if (images == null || images.length == 0) return;

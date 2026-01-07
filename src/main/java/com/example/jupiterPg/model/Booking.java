@@ -13,6 +13,6 @@ public class Booking {
     private String bedId;
     private String userName;
     private String mobile;
-    private String status; // PENDING, APPROVED, REJECTED
+    private String status;
 }
 

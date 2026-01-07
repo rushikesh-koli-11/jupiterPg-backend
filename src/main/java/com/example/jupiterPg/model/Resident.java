@@ -25,14 +25,14 @@ public class Resident {
     private Double rent;
     private Double deposit;
 
-    // Resident.java
+
     private String idProofUrl;
 
 
-    private LocalDate checkInDate;          // REQUIRED
-    private LocalDate expectedCheckOutDate; // OPTIONAL
-    private LocalDate actualCheckOutDate;   // SET ON LEAVE
+    private LocalDate checkInDate;
+    private LocalDate expectedCheckOutDate;
+    private LocalDate actualCheckOutDate;
 
-    private String status; // ACTIVE, CHECKED_OUT
+    private String status;
 }
 

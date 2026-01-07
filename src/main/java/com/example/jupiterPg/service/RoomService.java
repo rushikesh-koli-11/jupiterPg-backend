@@ -17,11 +17,9 @@ public class RoomService {
     private final BedService bedService;
     private final BedRepository bedRepository;
 
-    /* ================= ADD ROOM ================= */
 
     public Room add(Room room) {
 
-        // 🔒 Prevent duplicate room number in same PG
         if (roomRepository.existsByPgIdAndRoomNumber(
                 room.getPgId(), room.getRoomNumber())) {
             throw new RuntimeException(
@@ -34,14 +32,12 @@ public class RoomService {
         return saved;
     }
 
-    /* ================= UPDATE ROOM ================= */
 
     public Room update(String id, Room room) {
 
         Room existing = roomRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Room not found"));
 
-        // 🔒 Check duplicate only if room number changed
         Optional<Room> duplicate = roomRepository
                 .findByPgIdAndRoomNumber(existing.getPgId(), room.getRoomNumber());
 
@@ -54,32 +50,27 @@ public class RoomService {
         room.setId(id);
         room.setPgId(existing.getPgId()); // PG must not change
 
-        // 🔥 Remove old beds
         bedRepository.deleteByRoomId(id);
 
         Room updated = roomRepository.save(room);
 
-        // 🔥 Recreate beds
         bedService.createBedsForRoom(updated);
 
         return updated;
     }
 
-    /* ================= GET ROOMS (SORTED) ================= */
 
     public java.util.List<Room> getByPg(String pgId) {
         return roomRepository
                 .findByPgIdOrderByFloorNumberAscRoomNumberAsc(pgId);
     }
 
-    /* ================= DELETE ================= */
 
     public void delete(String id) {
         bedRepository.deleteByRoomId(id);
         roomRepository.deleteById(id);
     }
 
-    /* ================= BULK CREATE ================= */
 
     public void bulkCreate(BulkRoomCreateDto dto) {
 
@@ -87,7 +78,6 @@ public class RoomService {
 
             String roomNumber = String.valueOf(i);
 
-            // 🔒 Prevent duplicate
             if (roomRepository.existsByPgIdAndRoomNumber(
                     dto.getPgId(), roomNumber)) {
                 throw new RuntimeException(

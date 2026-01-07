@@ -18,7 +18,7 @@ public class Enquiry {
     private String mobile;
     private String message;
 
-    private String status = "NEW"; // NEW, CONTACTED, CLOSED
+    private String status = "NEW";
 
     private LocalDateTime createdAt = LocalDateTime.now();
 }
